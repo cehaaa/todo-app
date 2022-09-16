@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Home from "../pages/Home";
 
 // interface
-import TaskInterface from "../interfaces/taskInterface";
+import TaskInterface from "../interfaces/TaskInterface";
 
 // props
 import TaskContextProps from "./Task/TaskContextProps";

@@ -14,13 +14,20 @@ import TaskProps from "../TaskProps";
 import TaskContext from "../TaskContext";
 
 // interface
-import TaskInterface from "../../../interfaces/taskInterface";
+import TaskInterface from "../../../interfaces/TaskInterface";
 
 // helpers
 import { formatedDate } from "../../../helpers";
 
-const CreateTask: React.FC<TaskProps> = (onIsShowModalChange, isShow) => {
+const CreateTask: React.FC<TaskProps> = ({ onIsShowModalChange, isShow }) => {
 	const { tasks, setTasks } = useContext(TaskContext);
+
+	const handleSubmit = (e: any) => {
+		e.preventDefault();
+		setTasks([...tasks, createTaskForm]);
+		onIsShowModalChange(false);
+		setCreateTaskForm(initialValue);
+	};
 
 	const initialValue: TaskInterface = {
 		id: 0,
@@ -30,60 +37,50 @@ const CreateTask: React.FC<TaskProps> = (onIsShowModalChange, isShow) => {
 		createdAt: formatedDate(),
 	};
 
-	const [taskCreateForm, setTaskCreateForm] =
+	const [createTaskForm, setCreateTaskForm] =
 		useState<TaskInterface>(initialValue);
 
 	const setTaskCreateFormField = (event: any) => {
 		const { name, value } = event.target;
+		const id = tasks.length + 1;
 
-		setTaskCreateForm(prevState => {
+		setCreateTaskForm(prevState => {
 			return {
 				...prevState,
+				id,
 				[name]: value,
 			};
 		});
 	};
 
-	const closeModal = useCallback(() => {}, [onIsShowModalChange]);
-
-	const handleSubmit = (e: any) => {
-		e.preventDefault();
-
-		closeModal();
-	};
-
 	return (
-		<>
-			{isShow && (
-				<Modal.Base isShow={isShow}>
-					<Modal.Header>
-						<div className='text-xl'>New Task</div>
-						<Modal.CloseButton />
-					</Modal.Header>
-					<Modal.Body>
-						<Form onSubmit={handleSubmit}>
-							<Input
-								placeholder='Title'
-								name='title'
-								label='Title'
-								value={taskCreateForm.title}
-								handleInputChange={setTaskCreateFormField}
-							/>
-							<Textarea
-								placeholder='Description'
-								name='description'
-								label='Description'
-								value={taskCreateForm.description}
-								handleInputChange={setTaskCreateFormField}
-							/>
-						</Form>
-					</Modal.Body>
-					<Modal.Footer>
-						<Button onClick={handleSubmit}>Submit</Button>
-					</Modal.Footer>
-				</Modal.Base>
-			)}
-		</>
+		<Modal.Base isShow={isShow}>
+			<Modal.Header>
+				<div className='text-xl'>New Task</div>
+				<Modal.CloseButton onIsShowModalChange={onIsShowModalChange} />
+			</Modal.Header>
+			<Modal.Body>
+				<Form onSubmit={handleSubmit}>
+					<Input
+						placeholder='Title'
+						name='title'
+						label='Title'
+						value={createTaskForm.title}
+						handleInputChange={setTaskCreateFormField}
+					/>
+					<Textarea
+						placeholder='Description'
+						name='description'
+						label='Description'
+						value={createTaskForm.description}
+						handleInputChange={setTaskCreateFormField}
+					/>
+				</Form>
+			</Modal.Body>
+			<Modal.Footer>
+				<Button onClick={handleSubmit}>Submit</Button>
+			</Modal.Footer>
+		</Modal.Base>
 	);
 };
 

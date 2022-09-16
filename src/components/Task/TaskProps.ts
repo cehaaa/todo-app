@@ -1,11 +1,10 @@
 import React from "react";
-import TaskInterface from "../../interfaces/taskInterface";
+import TaskInterface from "../../interfaces/TaskInterface";
 
 export type TaskProps = {
 	tasks?: Array<TaskInterface>;
 	task?: TaskInterface;
 	children?: React.ReactNode;
-	index?: number;
 	isShow?: boolean;
 	onIsShowModalChange?: any;
 };

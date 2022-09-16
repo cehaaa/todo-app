@@ -15,21 +15,20 @@ import TaskProps from "../TaskProps";
 import TaskContext from "../TaskContext";
 
 // interface
-import TaskInterface from "../../../interfaces/taskInterface";
+import TaskInterface from "../../../interfaces/TaskInterface";
 
 const EditTask: React.FC<TaskProps> = ({
 	isShow,
-	task,
 	onIsShowModalChange,
-	index,
+	task,
 }) => {
 	const { tasks, setTasks } = useContext(TaskContext);
-	const [taskEditForm, setTaskEditForm] = useState<TaskInterface>(task!);
+	const [editTaskForm, setEditTaskForm] = useState<TaskInterface>(task!);
 
-	const setTaskEditFormField = (event: any) => {
+	const setEditTaskFormField = (event: any) => {
 		const { name, value } = event.target;
 
-		setTaskEditForm(prevState => {
+		setEditTaskForm(prevState => {
 			return {
 				...prevState,
 				[name]: value,
@@ -39,11 +38,12 @@ const EditTask: React.FC<TaskProps> = ({
 
 	const handleSubmit = (e: any) => {
 		e.preventDefault();
-
 		const temp = [...tasks];
-		temp[index!] = taskEditForm!;
-		setTasks(temp);
 
+		const edit = temp.findIndex(item => item.id === task?.id);
+		temp[edit] = editTaskForm;
+
+		setTasks(temp);
 		onIsShowModalChange(false);
 	};
 
@@ -61,15 +61,15 @@ const EditTask: React.FC<TaskProps> = ({
 								placeholder='Title'
 								name='title'
 								label='Title'
-								value={taskEditForm?.title}
-								handleInputChange={setTaskEditFormField}
+								value={editTaskForm.title}
+								handleInputChange={setEditTaskFormField}
 							/>
 							<Textarea
 								placeholder='Description'
 								name='description'
 								label='Description'
-								value={taskEditForm?.description}
-								handleInputChange={setTaskEditFormField}
+								value={editTaskForm.description}
+								handleInputChange={setEditTaskFormField}
 							/>
 							<div>
 								<div className='flex space-x-5'>
