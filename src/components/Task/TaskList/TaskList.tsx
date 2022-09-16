@@ -6,7 +6,6 @@ import TaskProps from "../TaskProps";
 // components
 import Card from "../../Basic/Card/Card";
 import Badge from "../../Basic/Badge/Badge";
-import EditTask from "../EditTask/EditTask";
 
 // interface
 import TaskInterface from "../../../interfaces/TaskInterface";
@@ -18,6 +17,7 @@ import TaskContext from "../TaskContext";
 import PencilIcon from "../../Icons/PencilIcon";
 import TrashIcon from "../../Icons/TrashIcon";
 import CheckIcon from "../../Icons/CheckIcon";
+import Task from "../Task";
 
 const TaskList: React.FC<TaskProps> = ({ tasks }) => {
 	const [isShowModal, setIsShowModal] = useState(false);
@@ -53,7 +53,7 @@ const TaskList: React.FC<TaskProps> = ({ tasks }) => {
 	return (
 		<>
 			{isShowModal && (
-				<EditTask
+				<Task.Edit
 					isShow={isShowModal}
 					onIsShowModalChange={setIsShowModal}
 					task={taskToEdit!}

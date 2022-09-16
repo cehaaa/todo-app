@@ -4,7 +4,6 @@ import { useState, useContext, useEffect } from "react";
 import Task from "../components/Task/Task";
 import Header from "../components/Basic/Header/Header";
 import Spinner from "../components/Basic/Spinner/Spinner";
-import CreateTask from "../components/Task/CreateTask/CreateTask";
 
 // context
 import TaskContext from "../components/Task/TaskContext";
@@ -40,7 +39,7 @@ const Home = () => {
 	return (
 		<>
 			{/* new task modal */}
-			<CreateTask isShow={isShowModal} onIsShowModalChange={setIsShowModal} />
+			<Task.Create isShow={isShowModal} onIsShowModalChange={setIsShowModal} />
 
 			<div className=' bg-gray-100 w-screen'>
 				<div className='w-9/12 mx-auto py-10'>
