@@ -9,7 +9,7 @@ import Spinner from "../components/Basic/Spinner/Spinner";
 import TaskContext from "../components/Task/TaskContext";
 
 // interface
-import TaskInterface from "../interfaces/TaskInterface";
+import { TaskInterface } from "../components/Task/TaskInterface";
 
 // service
 import { getTasks } from "../services/tasks";

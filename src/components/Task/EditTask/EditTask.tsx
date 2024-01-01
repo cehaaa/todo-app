@@ -15,7 +15,7 @@ import TaskProps from "../TaskProps";
 import TaskContext from "../TaskContext";
 
 // interface
-import TaskInterface from "../../../interfaces/TaskInterface";
+import { TaskInterface } from "../TaskInterface";
 
 const EditTask: React.FC<TaskProps> = ({
 	isShow,
@@ -75,9 +75,10 @@ const EditTask: React.FC<TaskProps> = ({
 								<div className='flex space-x-5'>
 									<div className='flex justify-between w-full items-center'>
 										<div className='flex space-x-2'>
-											<Badge status='primary'> {task?.createdAt} </Badge>
+											<Badge status='primary'>{task?.createdAt}</Badge>
 											<Badge
-												status={task?.status === 0 ? "warning" : "success"}>
+												status={task?.status === 0 ? "warning" : "success"}
+											>
 												{task?.status === 0 ? "Pending" : "Done"}
 											</Badge>
 										</div>

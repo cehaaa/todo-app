@@ -1,5 +1,5 @@
 import React from "react";
-import TaskInterface from "../../interfaces/TaskInterface";
+import { TaskInterface } from "./TaskInterface";
 
 export type TaskProps = {
 	tasks?: Array<TaskInterface>;

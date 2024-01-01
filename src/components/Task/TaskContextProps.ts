@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 
-import TaskInterface from "../../interfaces/TaskInterface";
+import { TaskInterface } from "./TaskInterface";
 
 export type TaskContextProps = {
 	tasks: TaskInterface[];

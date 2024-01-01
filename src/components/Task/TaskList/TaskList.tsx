@@ -8,7 +8,7 @@ import Card from "../../Basic/Card/Card";
 import Badge from "../../Basic/Badge/Badge";
 
 // interface
-import TaskInterface from "../../../interfaces/TaskInterface";
+import { TaskInterface } from "../TaskInterface";
 
 // context
 import TaskContext from "../TaskContext";
@@ -68,26 +68,30 @@ const TaskList: React.FC<TaskProps> = ({ tasks }) => {
 								<Card.Header>
 									<div
 										className=' text-lg hover:underline cursor-pointer'
-										onClick={() => editList(task, index)}>
+										onClick={() => editList(task, index)}
+									>
 										{task.title}
 									</div>
 									<div className='flex space-x-3'>
 										{task.status === 0 && (
 											<div
 												className='group border hover:border-none rounded-lg flex items-center justify-center h-7 w-7 cursor-pointer hover:bg-green-500 duration-200 hover:bg-opacity-30'
-												onClick={() => markDoneList(task.id!)}>
+												onClick={() => markDoneList(task.id!)}
+											>
 												<CheckIcon className='h-4 w-4 text-gray-400 group-hover:text-green-500' />
 											</div>
 										)}
 										<div
 											className='group border hover:border-none rounded-lg flex items-center justify-center h-7 w-7 cursor-pointer hover:bg-yellow-500 duration-200 hover:bg-opacity-30'
-											onClick={() => editList(task, index)}>
+											onClick={() => editList(task, index)}
+										>
 											<PencilIcon className='h-4 w-4 text-gray-400 group-hover:text-yellow-500' />
 										</div>
 										{task.status === 0 && (
 											<div
 												className='group border hover:border-none rounded-lg flex items-center justify-center h-7 w-7 cursor-pointer hover:bg-red-500 duration-200 hover:bg-opacity-30'
-												onClick={() => removeList(task.id!)}>
+												onClick={() => removeList(task.id!)}
+											>
 												<TrashIcon className='h-4 w-4 text-gray-400 group-hover:text-red-500' />
 											</div>
 										)}

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useCallback } from "react";
+import React, { useContext, useState } from "react";
 
 // components
 import Modal from "../../Basic/Modal/Modal";
@@ -14,7 +14,7 @@ import TaskProps from "../TaskProps";
 import TaskContext from "../TaskContext";
 
 // interface
-import TaskInterface from "../../../interfaces/TaskInterface";
+import { TaskInterface } from "../TaskInterface";
 
 // helpers
 import { formatedDate } from "../../../helpers";
